@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
 
-export default class Addtodo extends Component {
+class Addtodo extends Component {
   constructor(props) {
     super(props);
     this.state = { inputeText: "" };
@@ -16,6 +18,7 @@ export default class Addtodo extends Component {
   handleSubmit = event => {
     event.preventDefault();
     //Add task to redux
+    this.props.dispatch(addTodo(this.state.inputeText));
     alert("A Task was submitted: " + this.state.inputeText);
   };
   render() {
@@ -31,3 +34,4 @@ export default class Addtodo extends Component {
     );
   }
 }
+export default connect()(Addtodo);
